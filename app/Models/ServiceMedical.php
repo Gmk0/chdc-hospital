@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceMedical extends Model
 {
     use HasFactory;
+
+
+
+    protected $fillable = [
+        'intitule',
+        'status',
+    ];
 }

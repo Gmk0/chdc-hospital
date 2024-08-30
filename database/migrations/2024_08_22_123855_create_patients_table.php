@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+                       $table->string('nom');
+            $table->string('matricule')->unique();
+            $table->string('postnom')->nullable();
+            $table->string('prenom');
+            $table->date('date_naiss');
+            $table->string('sexe');
+            $table->string('adresse');
+            $table->string('telephone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('etat_civil')->nullable();
+            $table->enum('status',['active','deces'])->default('active');
             $table->timestamps();
         });
     }

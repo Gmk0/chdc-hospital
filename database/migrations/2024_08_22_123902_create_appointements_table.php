@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('appointements', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('patient_id');
+            $table->foreignId('departement_id');
+            $table->foreignId('staff_medical_id');
+            $table->timestamp('date');
+            $table->string('heure');
+
+            $table->enum('status',['en attente', 'recu','annuler'])->default('en attente');
+
             $table->timestamps();
         });
     }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('service_medicals', function (Blueprint $table) {
             $table->id();
+            $table->string('intitule');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

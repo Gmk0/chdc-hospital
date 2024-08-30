@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('staff_medicals', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('postnom');
+            $table->string('prenom');
+            $table->string('matricule')->unique();
+            $table->date('date_naiss');
+            $table->string('sexe');
+            $table->string('adresse');
+             $table->string('fonction')->nullable();
+            $table->string('etat_civil')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('departement_id')->nullable();
+
+            $table->enum('status', ['active', 'conger'])->default('active');
             $table->timestamps();
         });
     }

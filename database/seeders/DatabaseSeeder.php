@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Departement;
+use App\Models\Patient;
 use App\Models\User;
+use Database\Factories\PatientFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +16,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Tableau des départements à créer
+        $departements = [
+            [
+                'intitule' => 'Cardiology',
+                'description' => 'Department of Cardiology',
+            ],
+            [
+                'intitule' => 'Neurology',
+                'description' => 'Department of Neurology',
+            ],
+            [
+                'intitule' => 'Pediatrics',
+                'description' => 'Department of Pediatrics',
+            ],
+            // Ajoutez d'autres départements ici...
+        ];
+
+        // Boucle pour créer chaque département
+        foreach ($departements as $departement) {
+            Departement::factory()->create([
+                'intitule' => $departement['intitule'],
+                'description' => $departement['description']
+            ]);
+        }
+
 
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'firstname' => 'John',
+            'phone' => '123',
+            'email' => 'admin@admin.com',
+            'password' => 'password',
+            'role'=>'Admin',
         ]);
+
+        Patient::factory(20);
     }
 }

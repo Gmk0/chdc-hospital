@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'join',
+        'firstname',
+        'phone',
+        'role'
     ];
 
     /**
@@ -43,5 +47,42 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isAgent():bool
+    {
+        return $this->role=="Agent";
+
+
+    }
+
+    public function isDoctor(): bool {
+        return $this->role == "Medecion";
+    }
+
+    public function isInfirmier(): bool
+    {
+        return $this->role == "Medecion";
+    }
+    public function isLaboration(): bool{
+        return $this->role == "Laboration";
+    }
+    public function isAdmin(): bool{
+        return $this->role == "Admin";
+    }
+
+    public function isNoRole() {}
+
+    public function getRedirect(): String
+    {
+
+
+        return match ($this->role) {
+            'Agent' => 'agent.dashboard',
+            'Admin' => 'admin.dashboard',
+            'Medecin' => 'medecin.dashboard',
+            'Infirmier' => 'infirmier.dashboard',
+            'no role'=>'no_role.dashboard'
+        };
     }
 }
